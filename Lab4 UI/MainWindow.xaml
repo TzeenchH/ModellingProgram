@@ -1,0 +1,108 @@
+﻿<Window x:Class="Lab4_UI.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:Lab4_UI"
+		xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        d:DataContext="{d:DesignInstance local:ViewModel}"
+		mc:Ignorable="d"
+		Title="MainWindow" Height="450" Width="800">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="0.25*"/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<StackPanel
+			Grid.Column="0" >
+		<TextBlock
+            FontSize="20"
+			Margin="0 10 0 20"
+			Text="Параметры моделирования"/>
+			<Border 
+				Margin="0 10 0 10"
+				BorderBrush="Black"
+				CornerRadius="5"
+				BorderThickness="1">
+				<StackPanel>
+					<TextBlock
+                        FontSize="20"
+						Text="Время моделирования (Сек)"/>
+					<mah:NumericUpDown
+                        Value="{Binding ModellingTime, UpdateSourceTrigger=PropertyChanged}"
+                        FontSize="20"
+						Minimum="0"/>
+				</StackPanel>
+			</Border>
+			<Border
+				Margin="0 10 0 10"
+				BorderBrush="Black"
+				CornerRadius="5"
+				BorderThickness="1">
+				<StackPanel>
+					<TextBlock
+                        FontSize="20"
+						Text="Количество каналов"/>
+					<mah:NumericUpDown
+                        Value="{Binding WorkersCount, UpdateSourceTrigger=PropertyChanged}"
+                        FontSize="20"
+						Minimum="0"/>
+				</StackPanel>
+			</Border>
+			<Border
+				Margin="0 10 0 10"
+				BorderBrush="Black"
+				CornerRadius="5"
+				BorderThickness="1">
+				<StackPanel>
+					<TextBlock
+                        FontSize="20"
+						Text="Длина очереди"/>
+					<mah:NumericUpDown
+                        Value="{Binding QueueSize, UpdateSourceTrigger=PropertyChanged}"
+                        FontSize="20"
+						Minimum="0"/>
+				</StackPanel>
+			</Border>
+            <Border
+				Margin="0 10 0 10"
+				BorderBrush="Black"
+				CornerRadius="5"
+				BorderThickness="1">
+                <StackPanel>
+                    <TextBlock
+                        FontSize="20"
+						Text="Запросов в секунду"/>
+                    <mah:NumericUpDown
+                        Value="{Binding RPS, UpdateSourceTrigger=PropertyChanged}"
+                        FontSize="20"
+						Minimum="0"/>
+                </StackPanel>
+            </Border>
+            <Border
+				Margin="0 10 0 10"
+				BorderBrush="Black"
+				CornerRadius="5"
+				BorderThickness="1">
+				<StackPanel>
+					<TextBlock
+                        FontSize="20"
+						Text="Шаг интернирования (МС)"/>
+					<mah:NumericUpDown
+                        Value="{Binding InternationTime, UpdateSourceTrigger=PropertyChanged}"
+                        FontSize="18"
+						Minimum="0"/>
+				</StackPanel>
+			</Border>
+            <StackPanel Orientation="Horizontal">
+                <Button Margin="20 10 10 10" FontSize="18" Content="Запуск" Command="{Binding ProcessModelling}"/>
+                <Button Margin="10 10 20 10" FontSize="18" Content="Сохранить" Command="{Binding SaveResults}"/>
+            </StackPanel>
+        </StackPanel>
+        <Grid Grid.Column="1">
+            <StackPanel>
+                <ProgressBar Height="10" Minimum="0" Maximum="100" Value="{Binding ModellingProgress, NotifyOnSourceUpdated=True}"/>
+            </StackPanel>
+        </Grid>
+	</Grid>
+</Window>
